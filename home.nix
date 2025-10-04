@@ -17,6 +17,12 @@
 programs.fish = {
     enable = true;
   };
+  home.packages = [
+    pkgs.nodejs
+    pkgs.gh
+    pkgs.python3
+    pkgs.gcc
+  ];
 
 
 }
