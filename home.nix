@@ -16,6 +16,9 @@
   };
   programs.fish = {
     enable = true;
+    interactiveShellInit = ''
+      starship init fish | source
+      '';
   };
   home.packages = [
     pkgs.wget
@@ -28,9 +31,16 @@
     pkgs.ripgrep
     pkgs.fd
     pkgs.htop
-    pkgs.zoxide
     pkgs.nixfmt-rfc-style
   ];
+  programs.starship = {
+    enable = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   programs.ghostty = {
     enable = true;
     enableFishIntegration = true;
