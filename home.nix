@@ -16,9 +16,6 @@
   };
   programs.fish = {
     enable = true;
-    interactiveShellInit = ''
-      starship init fish | source
-      '';
   };
   home.packages = [
     pkgs.wget
@@ -32,6 +29,7 @@
     pkgs.fd
     pkgs.htop
     pkgs.nixfmt-rfc-style
+    pkgs.sesh
   ];
   programs.starship = {
     enable = true;
@@ -61,9 +59,6 @@
   };
   programs.tmux = {
     enable = true;
-    terminal = "tmux-256color";
-    keyMode = "vi";
-    mouse = true;
   };
 
 }
