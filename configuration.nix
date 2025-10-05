@@ -2,12 +2,17 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -16,11 +21,14 @@
   networking.hostName = "nixos-anhnt"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-   time.timeZone = "Asia/Bangkok";
-   nix.settings.experimental-features = ["nix-command" "flakes"];
+  time.timeZone = "Asia/Bangkok";
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -37,8 +45,8 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
   services.xserver = {
-	enable = true;
-	windowManager.qtile.enable = true;
+    enable = true;
+    windowManager.qtile.enable = true;
   };
 
   # Configure keymap in X11
@@ -60,31 +68,31 @@
   # services.libinput.enable = true;
   services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm = {
-  	enable = true;
-	wayland.enable = true;
+    enable = true;
+    wayland.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-   users.users.anhnt = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-     packages = with pkgs; [
-       tree
-     ];
-     shell = pkgs.fish;
-   };
+  users.users.anhnt = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [
+      tree
+    ];
+    shell = pkgs.fish;
+  };
 
   programs.firefox.enable = true;
   programs.fish.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
-   environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     chezmoi
-     mise
-     brave
-   ];
+  environment.systemPackages = with pkgs; [
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    chezmoi
+    mise
+    brave
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -102,7 +110,7 @@
   # Enable vmware guest support (VMWARE TOOL)
   virtualisation.vmware.guest.enable = true;
   # Setup qemu so we can run x86_64 binaries
-  boot.binfmt.emulatedSystems = ["x86_64-linux"];
+  boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
 
   # Interface is this on M1
   networking.interfaces.ens160.useDHCP = true;
@@ -142,4 +150,3 @@
   system.stateVersion = "25.05"; # Did you read the comment?
 
 }
-
