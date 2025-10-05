@@ -20,7 +20,6 @@ programs.fish = {
   home.packages = [
     pkgs.wget
     pkgs.neovim
-    pkgs.ghostty
     pkgs.nodejs
     pkgs.gh
     pkgs.python3
@@ -30,16 +29,29 @@ programs.fish = {
     pkgs.fd
     pkgs.htop
   ];
+  programs.ghostty = {
+    enable = true;
+    enableFishIntegration = true;
+    settings = {
+      keybind = [
+        "super+c=copy_to_clipboard"
+        "super+v=paste_from_clipboard"
+        "super+shift+c=copy_to_clipboard"
+        "super+shift+v=paste_from_clipboard"
+      ];
+    };
+  };
 
   programs.git = {
     enable = true;
     userName = "anhnt";
     userEmail = "tuananh131001@gmail.com";
-
   };
-  programs.bash = {
-  
+  programs.tmux = {
+    enable = true;
+    terminal = "tmux-256color";
+    keyMode = "vi";
+    mouse = true;
   };
 
-
-}
+  }
