@@ -28,6 +28,7 @@ programs.fish = {
     pkgs.ripgrep
     pkgs.fd
     pkgs.htop
+    pkgs.zoxide
   ];
   programs.ghostty = {
     enable = true;
