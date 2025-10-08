@@ -30,7 +30,21 @@
     pkgs.htop
     pkgs.nixfmt-rfc-style
     pkgs.sesh
+    pkgs.gnumake
+    pkgs.mise
+    pkgs.chezmoi
+    pkgs.brave
+    pkgs.zlib
+    pkgs.claude-code
+    pkgs.libsecret
+    pkgs.gcr
+    pkgs.tmux
   ];
+  services.gnome-keyring = {
+    enable = true;
+    components = [ "secrets" ];
+  };
+
   programs.starship = {
     enable = true;
   };
@@ -42,14 +56,6 @@
   programs.ghostty = {
     enable = true;
     enableFishIntegration = true;
-    settings = {
-      keybind = [
-        "super+c=copy_to_clipboard"
-        "super+v=paste_from_clipboard"
-        "super+shift+c=copy_to_clipboard"
-        "super+shift+v=paste_from_clipboard"
-      ];
-    };
   };
 
   programs.git = {
@@ -57,8 +63,4 @@
     userName = "anhnt";
     userEmail = "tuananh131001@gmail.com";
   };
-  programs.tmux = {
-    enable = true;
-  };
-
 }

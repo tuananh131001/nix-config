@@ -9,12 +9,14 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zig.url = "github:mitchellh/zig-overlay";
   };
 
   outputs =
     inputs@{
       nixpkgs,
       rust-overlay,
+      zig,
       home-manager,
       ...
     }:
@@ -27,7 +29,10 @@
           (
             { pkgs, ... }:
             {
-              nixpkgs.overlays = [ rust-overlay.overlays.default ];
+              nixpkgs.overlays = [
+                rust-overlay.overlays.default
+                zig.overlays.default
+              ];
               environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
             }
           )
