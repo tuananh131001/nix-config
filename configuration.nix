@@ -62,8 +62,9 @@
   services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm = {
     enable = true;
-    wayland.enable = true;
+    wayland.enable = false;
   };
+  services.xserver.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.anhnt = {
