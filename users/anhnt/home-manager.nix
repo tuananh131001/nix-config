@@ -1,9 +1,18 @@
-{ config, pkgs, ... }:
+{ isWSL, inputs, ... }:
 
 {
-  home.username = "anhnt";
-  home.homeDirectory = "/home/anhnt";
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  isLinux = pkgs.stdenv.isLinux;
+in
+{
   home.stateVersion = "25.05";
+  xdg.enable = true;
+
   programs.mise = {
     enable = true;
     enableFishIntegration = true; # or enableBashIntegration / enableFishIntegration
@@ -62,5 +71,12 @@
     enable = true;
     userName = "anhnt";
     userEmail = "tuananh131001@gmail.com";
+  };
+  # Make cursor not tiny on HiDPI screens
+  home.pointerCursor = lib.mkIf (isLinux && !isWSL) {
+    name = "Vanilla-DMZ";
+    package = pkgs.vanilla-dmz;
+    size = 128;
+    x11.enable = true;
   };
 }
