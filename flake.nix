@@ -13,39 +13,67 @@
   };
 
   outputs =
-    inputs@{
+    {
+      self,
       nixpkgs,
-      rust-overlay,
-      zig,
       home-manager,
       ...
-    }:
+    }@inputs:
+    let
+      # Overlays is the list of overlays we want to apply from flake inputs.
+      overlays = [
+        inputs.zig.overlays.default
+      ];
+
+      mkSystem = import ./lib/mksystem.nix {
+        inherit overlays nixpkgs inputs;
+      };
+    in
     {
-
-      nixosConfigurations.nixos-anhnt = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./configuration.nix
-          home-manager.nixosModules.home-manager
-          (
-            { pkgs, ... }:
-            {
-              nixpkgs.overlays = [
-                rust-overlay.overlays.default
-                zig.overlays.default
-              ];
-              environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
-            }
-          )
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.anhnt = ./home.nix;
-
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-          }
-        ];
+      nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
+        system = "aarch64-linux";
+        user = "anhnt";
       };
 
+      nixosConfigurations.vm-intel = mkSystem "vm-intel" rec {
+        system = "x86_64-linux";
+        user = "anhnt";
+      };
     };
+
+  # outputs =
+  #   inputs@{
+  #     nixpkgs,
+  #     rust-overlay,
+  #     zig,
+  #     home-manager,
+  #     ...
+  #   }:
+  #   {
+  #     nixosConfigurations.nixos-anhnt = nixpkgs.lib.nixosSystem {
+  #       modules = [
+  #         ./configuration.nix
+  #         home-manager.nixosModules.home-manager
+  #         (
+  #           { pkgs, ... }:
+  #           {
+  #             nixpkgs.overlays = [
+  #               rust-overlay.overlays.default
+  #               zig.overlays.default
+  #             ];
+  #             environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+  #           }
+  #         )
+  #         {
+  #           home-manager.useGlobalPkgs = true;
+  #           home-manager.useUserPackages = true;
+  #           home-manager.users.anhnt = ./home.nix;
+  #
+  #           # Optionally, use home-manager.extraSpecialArgs to pass
+  #           # arguments to home.nix
+  #         }
+  #       ];
+  #     };
+  #
+  #   };
 }
