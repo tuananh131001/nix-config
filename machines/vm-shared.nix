@@ -35,6 +35,7 @@
     xkb.layout = "us";
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
+    xkbOptions = "altwin:swap_alt_win";
   };
 
   programs.tmux.enable = true; # home-manager created ~/.config/tmux which causes my chezmoi config broken
@@ -61,6 +62,27 @@
       # if the clipboard sill works.
       gtkmm3
     ];
+
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      # The name is just the name of the configuration file, it does not really matter
+      default = {
+        ids = [ "*" ]; # what goes into the [id] section, here we select all keyboards
+        # Everything but the ID section:
+        settings = {
+          # The main layer, if you choose to declare it in Nix
+          main = {
+            capslock = "layer(control)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
+          };
+          otherlayer = {};
+        };
+        extraConfig = builtins.readFile ./keyd;
+          
+        
+      };
+    };
+};
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
