@@ -17,6 +17,10 @@ in
 {
   home.stateVersion = "25.05";
   xdg.enable = true;
+  
+  xdg.configFile = {
+    "i3/config".text = builtins.readFile ./i3;
+  };
 
   programs.mise = {
     enable = true;
