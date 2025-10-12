@@ -6,6 +6,7 @@
   config,
   lib,
   pkgs,
+  currentSystemName,
   ...
 }:
 {
@@ -39,6 +40,29 @@
   };
 
   programs.firefox.enable = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages =
+    with pkgs;
+    [
+      cachix
+      gnumake
+      killall
+      xclip
+
+      # For hypervisors that support auto-resizing, this script forces it.
+      # I've noticed not everyone listens to the udev events so this is a hack.
+      (writeShellScriptBin "xrandr-auto" ''
+        xrandr --output Virtual-1 --auto
+      '')
+    ]
+    ++ lib.optionals (currentSystemName == "vm-aarch64") [
+      # This is needed for the vmware user tools clipboard to work.
+      # You can test if you don't need this by deleting this and seeing
+      # if the clipboard sill works.
+      gtkmm3
+    ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
