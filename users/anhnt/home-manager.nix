@@ -20,6 +20,7 @@ in
   
   xdg.configFile = {
     "i3/config".text = builtins.readFile ./i3;
+    "rofi/config.rasi".text = builtins.readFile ./rofi;
   };
 
   programs.mise = {
@@ -57,6 +58,7 @@ in
     pkgs.libsecret
     pkgs.gcr
     pkgs.bitwarden-desktop
+    pkgs.rofi
   ]
   ++ lib.optionals (currentSystemName == "pc-intel") [
     pkgs.discord-ptb
