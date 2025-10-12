@@ -35,7 +35,6 @@
     xkb.layout = "us";
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
-    xkbOptions = "altwin:swap_alt_win";
   };
 
   programs.tmux.enable = true; # home-manager created ~/.config/tmux which causes my chezmoi config broken
