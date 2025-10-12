@@ -27,6 +27,9 @@ leftmeta = layer(meta_mac)
 # Pass through Meta+N for i3 terminal binding
 n = M-n
 
+# Pass through Meta+O for i3 rofi binding
+o = M-o
+
 # Switch directly to an open tab (e.g., Firefox, VS Code)
 1 = A-1
 2 = A-2
