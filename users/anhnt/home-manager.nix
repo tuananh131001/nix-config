@@ -1,4 +1,4 @@
-{ isWSL, inputs, ... }:
+{ isWSL, inputs, currentSystemName, ... }:
 
 {
   config,
@@ -48,7 +48,10 @@ in
     pkgs.libsecret
     pkgs.gcr
     pkgs.tmux
-  ];
+  ] ++ lib.optionals (currentSystemName == "pc-intel")[
+      pkgs.alsa-utils
+      pkgs.ethtool
+    ];
   services.gnome-keyring = {
     enable = true;
     components = [ "secrets" ];

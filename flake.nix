@@ -35,7 +35,7 @@
         user = "anhnt";
       };
 
-      nixosConfigurations.vm-intel = mkSystem "vm-intel" rec {
+      nixosConfigurations.pc-intel = mkSystem "pc-intel" rec {
         system = "x86_64-linux";
         user = "anhnt";
       };
