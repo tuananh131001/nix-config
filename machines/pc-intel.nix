@@ -21,6 +21,8 @@
     #media-session.enable = true;
   };
 
+  hardware.alsa.enablePersistence = true;
+
 
     # Nvidia
   hardware.graphics.enable = true;
