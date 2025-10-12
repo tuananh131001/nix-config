@@ -24,6 +24,9 @@ leftmeta = layer(meta_mac)
 # The 'meta_mac' modifier layer; inherits from the 'Ctrl' modifier layer
 [meta_mac:C]
 
+# Pass through Meta+N for i3 terminal binding
+n = M-n
+
 # Switch directly to an open tab (e.g., Firefox, VS Code)
 1 = A-1
 2 = A-2
