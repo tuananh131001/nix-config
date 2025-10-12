@@ -37,12 +37,6 @@ in systemFunc rec {
     # Allow unfree packages.
     { nixpkgs.config.allowUnfree = true; }
 
-    # Bring in WSL if this is a WSL build
-    (if isWSL then inputs.nixos-wsl.nixosModules.wsl else {})
-
-    # Snapd on Linux
-    (if isLinux then inputs.nix-snapd.nixosModules.default else {})
-
     machineConfig
     userOSConfig
     home-manager.home-manager {
