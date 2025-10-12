@@ -1,4 +1,3 @@
-
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
@@ -12,7 +11,8 @@
 {
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    ../modules/specialization/plasma.nix
+    ../modules/specialization/i3.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -31,90 +31,14 @@
     "flakes"
   ];
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # services.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-  services.desktopManager.plasma6.enable = false;
-  services.displayManager.sddm = {
+  services.xserver = lib.mkIf (config.specialisation != { }) {
     enable = true;
-    wayland.enable = false;
-  };
-  services.xserver.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.anhnt = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      tree
-    ];
-    shell = pkgs.fish;
+    xkb.layout = "us";
+    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
   };
 
   programs.firefox.enable = true;
-  programs.fish.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Enable vmware guest support (VMWARE TOOL)
-  virtualisation.vmware.guest.enable = true;
-  # Setup qemu so we can run x86_64 binaries
-  boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
-
-  # Interface is this on M1
-  networking.interfaces.ens160.useDHCP = true;
-
-  # Lots of stuff that uses aarch64 that claims doesn't work, but actually works.
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnsupportedSystem = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
@@ -134,5 +58,4 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
