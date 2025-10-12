@@ -1,4 +1,9 @@
-{ isWSL, inputs, currentSystemName, ... }:
+{
+  isWSL,
+  inputs,
+  currentSystemName,
+  ...
+}:
 
 {
   config,
@@ -47,12 +52,13 @@ in
     pkgs.claude-code
     pkgs.libsecret
     pkgs.gcr
-    pkgs.discord-ptb
     pkgs.bitwarden-desktop
-  ] ++ lib.optionals (currentSystemName == "pc-intel")[
-      pkgs.alsa-utils
-      pkgs.ethtool
-    ];
+  ]
+  ++ lib.optionals (currentSystemName == "pc-intel") [
+    pkgs.discord-ptb
+    pkgs.alsa-utils
+    pkgs.ethtool
+  ];
   services.gnome-keyring = {
     enable = true;
     components = [ "secrets" ];
