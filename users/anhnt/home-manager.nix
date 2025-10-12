@@ -42,12 +42,12 @@ in
     pkgs.gnumake
     pkgs.mise
     pkgs.chezmoi
-    pkgs.brave
+    pkgs.firefox
     pkgs.zlib
     pkgs.claude-code
     pkgs.libsecret
     pkgs.gcr
-    pkgs.tmux
+    pkgs.discord-ptb
   ] ++ lib.optionals (currentSystemName == "pc-intel")[
       pkgs.alsa-utils
       pkgs.ethtool

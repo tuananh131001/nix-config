@@ -21,8 +21,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos-anhnt"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
@@ -39,7 +37,7 @@
     displayManager.gdm.enable = true;
   };
 
-  programs.firefox.enable = true;
+  programs.tmux.enable = true; # home-manager created ~/.config/tmux which causes my chezmoi config broken
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
