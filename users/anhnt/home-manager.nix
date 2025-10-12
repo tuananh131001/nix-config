@@ -48,6 +48,7 @@ in
     pkgs.libsecret
     pkgs.gcr
     pkgs.discord-ptb
+    pkgs.bitwarden-desktop
   ] ++ lib.optionals (currentSystemName == "pc-intel")[
       pkgs.alsa-utils
       pkgs.ethtool
