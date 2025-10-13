@@ -9,54 +9,25 @@
 *
 
 [main]
+# Map Alt to Control for common shortcuts
+leftmeta = layer(mac)
 
-# Use the 'leftmeta' key as the new "Cmd" key, activating the 'meta_mac' layer
-# leftmeta = layer(meta_mac)
-leftmeta = overload(meta_mac, leftmeta)
+[mac:C]
+# Common editing shortcuts
+c = C-c  # Copy
 
-# Optional: Ensure 'leftalt' retains its default behavior (usually not necessary)
-# leftalt = leftalt
-
-# The 'meta_mac' modifier layer; inherits from the 'Ctrl' modifier layer
-[meta_mac:C]
-
-# Meta-Space: Open the Launcher (a feature of gnome-shell)
-# keybinding: ? how did we arrive at M-/ ?
-# space = M-/
-
-# Copy
-c = C-insert
-# Paste
-v = S-insert
-# Cut
-x = S-delete
-
-## Gnome Behavior - Toggle tiled left 
-# left = M-left
-## Gnome Behavior - Toggle tiled right 
-# right = M-right
-
-#  meta+up - Maximize window
-up = M-up
-# meta+down - un-maximize window
-down = M-down
+v = C-v  # Paste
+x = C-x  # Cut
+a = C-a  # Select all
+z = C-z  # Undo
+y = C-y  # Redo (or C-S-z depending on app)
+f = C-f  # Find
+s = C-s  # Save
+n = C-n  # New
+o = C-o  # Open
+w = C-w  # Close tab/window
+t = C-t  # New tab
+q = C-q  # Quit
+p = C-p  # Print
 
 
-# As soon as 'tab' is pressed (but not yet released), switch to the 'app_switch_state' overlay
-# Send a 'M-tab' key tap before entering 'app_switch_state'
-tab = swapm(app_switch_state, M-tab)
-
-# Meta-Backtick: Switch to the next window in the application group
-# Default binding for 'cycle-group' in GNOME
-` = A-f6
-
-# 'app_switch_state' modifier layer; inherits from the 'Meta' modifier layer
-[app_switch_state:M]
-
-# Meta-Tab: Switch to the next application
-tab = M-tab
-right = M-tab
- 
-# Meta-Backtick: Switch to the previous application
-` = M-S-tab
-left = M-S-tab
