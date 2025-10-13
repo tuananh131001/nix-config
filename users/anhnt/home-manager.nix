@@ -88,6 +88,7 @@ in
     userName = "anhnt";
     userEmail = "tuananh131001@gmail.com";
   };
+  xresources.extraConfig = builtins.readFile ./Xresources;
   # Make cursor not tiny on HiDPI screens
   home.pointerCursor = lib.mkIf (isLinux && !isWSL) {
     name = "Vanilla-DMZ";
@@ -95,4 +96,5 @@ in
     size = 128;
     x11.enable = true;
   };
+
 }

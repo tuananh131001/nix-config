@@ -4,11 +4,6 @@
 # Mac-Like Configuration Example
 #
 # Uses the "Meta" key (sometimes called Windows/Super key) to the left of the spacebar as the "Cmd" key. On a mac this is the 'command' key.
-#
-# Note:
-#   This generally requires that pressing and releasing the Meta key does nothing.
-#   On GNOME systems, you may need to disable the "overlay-key" in mutter:
-#     - `gsettings set org.gnome.mutter overlay-key ''`
 
 [ids]
 *
@@ -16,7 +11,8 @@
 [main]
 
 # Use the 'leftmeta' key as the new "Cmd" key, activating the 'meta_mac' layer
-leftmeta = layer(meta_mac)
+# leftmeta = layer(meta_mac)
+leftmeta = overload(meta_mac, leftmeta)
 
 # Optional: Ensure 'leftalt' retains its default behavior (usually not necessary)
 # leftalt = leftalt
@@ -24,22 +20,9 @@ leftmeta = layer(meta_mac)
 # The 'meta_mac' modifier layer; inherits from the 'Ctrl' modifier layer
 [meta_mac:C]
 
-# Pass through Meta+N for i3 terminal binding
-n = M-n
-
-# Pass through Meta+O for i3 rofi binding
-o = M-o
-
-# Switch directly to an open tab (e.g., Firefox, VS Code)
-1 = A-1
-2 = A-2
-3 = A-3
-4 = A-4
-5 = A-5
-6 = A-6
-7 = A-7
-8 = A-8
-9 = A-9
+# Meta-Space: Open the Launcher (a feature of gnome-shell)
+# keybinding: ? how did we arrive at M-/ ?
+# space = M-/
 
 # Copy
 c = C-insert
@@ -48,10 +31,16 @@ v = S-insert
 # Cut
 x = S-delete
 
-# Move cursor to the beginning of the line
-left = home
-# Move cursor to the end of the line
-right = end
+## Gnome Behavior - Toggle tiled left 
+# left = M-left
+## Gnome Behavior - Toggle tiled right 
+# right = M-right
+
+#  meta+up - Maximize window
+up = M-up
+# meta+down - un-maximize window
+down = M-down
+
 
 # As soon as 'tab' is pressed (but not yet released), switch to the 'app_switch_state' overlay
 # Send a 'M-tab' key tap before entering 'app_switch_state'
@@ -67,7 +56,7 @@ tab = swapm(app_switch_state, M-tab)
 # Meta-Tab: Switch to the next application
 tab = M-tab
 right = M-tab
-
+ 
 # Meta-Backtick: Switch to the previous application
 ` = M-S-tab
 left = M-S-tab

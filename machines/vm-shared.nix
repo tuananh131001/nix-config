@@ -32,7 +32,10 @@
 
   services.xserver = lib.mkIf (config.specialisation != { }) {
     enable = true;
-    xkb.layout = "us";
+    xkbModel = "applealu_ansi";
+    xkbOptions = "ctrl:nocaps";
+    xkbVariant = "mac";
+
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
   };
@@ -63,7 +66,7 @@
     ];
 
   services.keyd = {
-    enable = true;
+    enable = false;
     keyboards = {
       # The name is just the name of the configuration file, it does not really matter
       default = {
@@ -82,6 +85,10 @@
       };
     };
 };
+  
+  # Virtualization settings
+  virtualisation.docker.enable = true;
+
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
