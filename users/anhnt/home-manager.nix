@@ -59,6 +59,7 @@ in
     pkgs.gcr
     pkgs.bitwarden-desktop
     pkgs.rofi
+    pkgs.geist-font
   ]
   ++ lib.optionals (currentSystemName == "pc-intel") [
     pkgs.discord-ptb
@@ -88,6 +89,7 @@ in
     userName = "anhnt";
     userEmail = "tuananh131001@gmail.com";
   };
+
   xresources.extraConfig = builtins.readFile ./Xresources;
   # Make cursor not tiny on HiDPI screens
   home.pointerCursor = lib.mkIf (isLinux && !isWSL) {
