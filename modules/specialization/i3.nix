@@ -12,7 +12,6 @@
     services.xserver = {
       enable = true;
       xkb.layout = "us";
-      xkbModel = "applealu_iso";
       dpi = 160;
 
       desktopManager = {

@@ -32,7 +32,7 @@
 
   services.xserver = lib.mkIf (config.specialisation != { }) {
     enable = true;
-    xkbModel = "applealu_ansi";
+    xkbModel = "apple";
     xkbOptions = "ctrl:nocaps";
     xkbVariant = "mac";
 
