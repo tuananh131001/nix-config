@@ -78,6 +78,16 @@
   # Virtualization settings
   virtualisation.docker.enable = true;
 
+  i18n.inputMethod = {
+      type = "fcitx5";
+      enable = true;
+      fcitx5.addons = with pkgs; [
+        fcitx5-unikey
+        fcitx5-gtk
+      ];
+  };
+
+
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
