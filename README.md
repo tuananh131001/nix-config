@@ -13,3 +13,7 @@
     2. F6 to select the correct sound card
     3. Move to right and use up/down key to change Auto Mute to disable
 
+
+# Vietnamese Linux Typing
+Use 'fcitx5-configtool' for config vietnamese typing system
+
