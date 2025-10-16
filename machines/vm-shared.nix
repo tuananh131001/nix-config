@@ -32,6 +32,8 @@
   services.xserver = lib.mkIf (config.specialisation != { }) {
     enable = true;
     xkb.layout = "us";
+    xkb.model = "apple";
+    xkb.variant = "basic"; # Fix dead key on Keychon K8 Max
 
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
