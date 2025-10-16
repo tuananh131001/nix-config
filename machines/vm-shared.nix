@@ -12,7 +12,6 @@
 {
   imports = [
     # Include the results of the hardware scan.
-    ../modules/specialization/plasma.nix
     ../modules/specialization/i3.nix
   ];
 
@@ -32,9 +31,7 @@
 
   services.xserver = lib.mkIf (config.specialisation != { }) {
     enable = true;
-    xkbModel = "apple";
-    xkbOptions = "ctrl:nocaps";
-    xkbVariant = "mac";
+    xkb.layout = "us";
 
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
