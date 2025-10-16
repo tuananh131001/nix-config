@@ -12,7 +12,6 @@
     services.xserver = {
       enable = true;
       xkb.layout = "us";
-      dpi = 140;
 
       desktopManager = {
         xterm.enable = false;
