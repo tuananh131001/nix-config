@@ -23,25 +23,13 @@ in
     "rofi/config.rasi".text = builtins.readFile ./rofi;
   };
 
-  programs.mise = {
-    enable = true;
-    enableFishIntegration = true; # or enableBashIntegration / enableFishIntegration
-    settings = {
-      # global default versions
-      nodejs = "lts";
-      go = "latest";
-      ruby = "latest";
-    };
-  };
   programs.fish = {
     enable = true;
   };
   home.packages = [
     pkgs.wget
     pkgs.neovim
-    pkgs.nodejs
     pkgs.gh
-    pkgs.python3
     pkgs.gcc
     pkgs.fzf
     pkgs.ripgrep
@@ -60,6 +48,12 @@ in
     pkgs.bitwarden-desktop
     pkgs.rofi
     pkgs.geist-font
+
+    # Language
+    pkgs.nodejs
+    pkgs.python3
+    pkgs.zig
+    pkgs.ruby
   ]
   ++ lib.optionals (currentSystemName == "pc-intel") [
     pkgs.discord-ptb
