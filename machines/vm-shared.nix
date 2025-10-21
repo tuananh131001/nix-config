@@ -12,12 +12,13 @@
 {
   imports = [
     # Include the results of the hardware scan.
-    ../modules/specialization/i3.nix
+    # ../modules/specialization/i3.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 7;
 
   networking.hostName = "nixos-anhnt"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -34,10 +35,11 @@
     xkb.layout = "us";
     xkb.model = "apple";
     xkb.variant = "basic"; # Fix dead key on Keychon K8 Max
-
-    desktopManager.gnome.enable = true;
-    displayManager.gdm.enable = true;
   };
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  services.displayManager.defaultSession = "plasmax11";
 
   programs.tmux.enable = true; # home-manager created ~/.config/tmux which causes my chezmoi config broken
 

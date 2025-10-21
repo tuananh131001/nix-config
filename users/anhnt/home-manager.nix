@@ -41,6 +41,7 @@ in
     pkgs.mise
     pkgs.chezmoi
     pkgs.firefox
+    pkgs.brave
     pkgs.zlib
     pkgs.claude-code
     pkgs.libsecret
