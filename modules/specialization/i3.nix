@@ -13,11 +13,6 @@
       enable = true;
       xkb.layout = "us";
 
-      desktopManager = {
-        xterm.enable = false;
-        wallpaper.mode = "fill";
-      };
-
       displayManager = {
         defaultSession = "none+i3";
         lightdm.enable = true;

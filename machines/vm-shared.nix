@@ -30,16 +30,34 @@
     "flakes"
   ];
 
-  services.xserver = lib.mkIf (config.specialisation != { }) {
+  # I3
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "*";
+  };
+
+  services.xserver = {
     enable = true;
     xkb.layout = "us";
     xkb.model = "apple";
     xkb.variant = "basic"; # Fix dead key on Keychon K8 Max
+
+    displayManager = {
+      defaultSession = "none+i3";
+      lightdm.enable = true;
+
+      # AARCH64: For now, on Apple Silicon, we must manually set the
+      # display resolution. This is a known issue with VMware Fusion.
+      sessionCommands = ''
+        ${pkgs.xorg.xset}/bin/xset r rate 500 20
+      '';
+    };
+
+    windowManager = {
+      i3.enable = true;
+    };
   };
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  services.displayManager.defaultSession = "plasmax11";
 
   programs.tmux.enable = true; # home-manager created ~/.config/tmux which causes my chezmoi config broken
 
@@ -74,28 +92,26 @@
         extraConfig = builtins.readFile ./keyd;
       };
     };
-};
-  
+  };
+
   # Virtualization settings
   virtualisation.docker.enable = true;
 
   i18n.inputMethod = {
-      type = "fcitx5";
-      enable = true;
-      fcitx5.addons = with pkgs; [
-        fcitx5-unikey
-        fcitx5-gtk
-      ];
+    type = "fcitx5";
+    enable = true;
+    fcitx5.addons = with pkgs; [
+      fcitx5-unikey
+      fcitx5-gtk
+    ];
   };
 
-fonts.packages = with pkgs; [
+  fonts.packages = with pkgs; [
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono
     nerd-fonts.noto
     nerd-fonts.symbols-only
-];
-
-
+  ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
