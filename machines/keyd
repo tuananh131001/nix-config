@@ -30,22 +30,3 @@ w = C-w  # Close tab/window
 t = C-t  # New tab
 q = C-q  # Quit
 p = C-p  # Print
-
-# As soon as 'tab' is pressed (but not yet released), switch to the 'app_switch_state' overlay
-# Send a 'M-tab' key tap before entering 'app_switch_state'
-tab = swapm(app_switch_state, M-tab)
-
-# Meta-Backtick: Switch to the next window in the application group
-# Default binding for 'cycle-group' in GNOME
-` = A-f6
-
-# 'app_switch_state' modifier layer; inherits from the 'Meta' modifier layer
-[app_switch_state:M]
-
-# Meta-Tab: Switch to the next application
-tab = M-tab
-right = M-tab
-
-# Meta-Backtick: Switch to the previous application
-` = M-S-tab
-left = M-S-tab
