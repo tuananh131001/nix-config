@@ -30,35 +30,6 @@
     "flakes"
   ];
 
-  # I3
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.common.default = "*";
-  };
-
-  services.xserver = {
-    enable = true;
-    xkb.layout = "us";
-    xkb.model = "apple";
-    xkb.variant = "basic"; # Fix dead key on Keychon K8 Max
-
-    displayManager = {
-      defaultSession = "none+i3";
-      lightdm.enable = true;
-
-      # AARCH64: For now, on Apple Silicon, we must manually set the
-      # display resolution. This is a known issue with VMware Fusion.
-      sessionCommands = ''
-        ${pkgs.xorg.xset}/bin/xset r rate 500 20
-      '';
-    };
-
-    windowManager = {
-      i3.enable = true;
-    };
-  };
-
   programs.tmux.enable = true; # home-manager created ~/.config/tmux which causes my chezmoi config broken
 
   # List packages installed in system profile. To search, run:
@@ -104,6 +75,35 @@
       fcitx5-unikey
       fcitx5-gtk
     ];
+  };
+
+  # I3
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "*";
+  };
+
+  services.xserver = {
+    enable = true;
+    xkb.layout = "us";
+    xkb.model = "apple";
+    xkb.variant = "basic"; # Fix dead key on Keychon K8 Max
+
+    displayManager = {
+      lightdm.enable = true;
+      defaultSession = "none+i3";
+
+      # AARCH64: For now, on Apple Silicon, we must manually set the
+      # display resolution. This is a known issue with VMware Fusion.
+      sessionCommands = ''
+        ${pkgs.xorg.xset}/bin/xset r rate 500 20
+      '';
+    };
+
+    windowManager = {
+      i3.enable = true;
+    };
   };
 
   fonts.packages = with pkgs; [
