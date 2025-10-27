@@ -70,8 +70,7 @@
   boot = {
     kernelParams =
       [ "acpi_rev_override" "mem_sleep_default=deep" "intel_iommu=igfx_off" "nvidia-drm.modeset=1" ];
-    kernelPackages = pkgs.linuxPackages_latest;
-    extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+  extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
   }; # fix nvidia tearing https://discourse.nixos.org/t/getting-nvidia-to-work-avoiding-screen-tearing/10422/7
   
   # boot.kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
