@@ -27,7 +27,8 @@ exec --no-startup-id dex --autostart --environment i3
 # they are included here as an example. Modify as you see fit.
 
 # Keyboard layout settings
-exec --no-startup-id setxkbmap -layout us -variant intl
+# exec --no-startup-id setxkbmap -layout us -variant intl # dead key issue
+ exec --no-startup-id setxkbmap -layout us
 
 # Input methods
 exec --no-startup-id fcitx5 -d
