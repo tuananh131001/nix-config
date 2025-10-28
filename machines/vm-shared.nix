@@ -11,7 +11,7 @@
 }:
 {
   # Be careful updating this.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_17;
 
   imports = [
     # Include the results of the hardware scan.
