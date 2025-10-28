@@ -62,6 +62,10 @@ in
     pkgs.remnote
     pkgs.bitwarden-desktop
     pkgs.legcord
+    pkgs.ticktick
+
+    # Utilities
+    pkgs.yazi
   ]
   ++ lib.optionals (currentSystemName == "pc-intel") [
     pkgs.discord-ptb
