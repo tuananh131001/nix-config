@@ -50,6 +50,10 @@
       (writeShellScriptBin "xrandr-auto" ''
         xrandr --output Virtual-1 --auto
       '')
+      # When using external 27 inch display
+      (writeShellScriptBin "xrandr-auto-big" ''
+        xrandr --output Virtual-1 --auto --scale 1.5
+      '')
     ]
     ++ lib.optionals (currentSystemName == "vm-aarch64") [
       # This is needed for the vmware user tools clipboard to work.
