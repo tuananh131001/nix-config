@@ -46,15 +46,22 @@ in
     pkgs.claude-code
     pkgs.libsecret
     pkgs.gcr
-    pkgs.bitwarden-desktop
     pkgs.rofi
     pkgs.geist-font
+
+    # dev
+    pkgs.devenv
 
     # Language
     pkgs.nodejs
     pkgs.python3
     pkgs.zig
     pkgs.ruby
+
+    # Apps
+    pkgs.remnote
+    pkgs.bitwarden-desktop
+    pkgs.legcord
   ]
   ++ lib.optionals (currentSystemName == "pc-intel") [
     pkgs.discord-ptb
