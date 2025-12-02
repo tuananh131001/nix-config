@@ -17,3 +17,6 @@
 # Vietnamese Linux Typing
 Use 'fcitx5-configtool' for config vietnamese typing system
 
+# Nix Flake Update / Update packages
+sudo nix flake update
+
