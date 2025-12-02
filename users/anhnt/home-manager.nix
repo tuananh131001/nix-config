@@ -51,6 +51,7 @@ in
 
     # dev
     pkgs.devenv
+    pkgs.p7zip
 
     # Language
     pkgs.nodejs

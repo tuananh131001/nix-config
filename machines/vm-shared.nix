@@ -15,7 +15,7 @@
 
   imports = [
     # Include the results of the hardware scan.
-    # ../modules/specialization/i3.nix
+    ../modules/specialization/plasma.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -44,6 +44,7 @@
       gnumake
       killall
       xclip
+      kdePackages.dolphin
 
       # For hypervisors that support auto-resizing, this script forces it.
       # I've noticed not everyone listens to the udev events so this is a hack.
@@ -91,7 +92,7 @@
     config.common.default = "*";
   };
 
-  services.xserver = {
+  services.xserver =  lib.mkIf (config.specialisation != {}) {
     enable = true;
     xkb.layout = "us";
     xkb.model = "apple";
