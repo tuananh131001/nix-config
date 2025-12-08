@@ -96,8 +96,10 @@ in
   programs.git = {
     enable = true;
     settings = {
-      userName = "anhnt";
-      userEmail = "tuananh131001@gmail.com";
+      user = {
+        name = "anhnt";
+        email = "tuananh131001@gmail.com";
+      };
     };
   };
 
