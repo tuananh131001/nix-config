@@ -16,6 +16,12 @@ let
 in
 {
   home.stateVersion = "25.11";
+  imports = [
+    inputs.zen-browser.homeModules.beta
+    inputs.plasma-manager.homeModules.plasma-manager
+    # or inputs.zen-browser.homeModules.twilight
+    # or inputs.zen-browser.homeModules.twilight-official
+  ];
   xdg.enable = true;
   
   xdg.configFile = {
@@ -77,11 +83,6 @@ in
   programs.starship = {
     enable = true;
   };
-  imports = [
-    inputs.zen-browser.homeModules.beta
-    # or inputs.zen-browser.homeModules.twilight
-    # or inputs.zen-browser.homeModules.twilight-official
-  ];
   programs.zen-browser.enable = true;
 
   programs.zoxide = {
@@ -110,6 +111,14 @@ in
     package = pkgs.vanilla-dmz;
     size = 128;
     x11.enable = true;
+  };
+
+  # MacOS-like window switching
+  programs.plasma = {
+    enable = true;
+    shortcuts.kwin = {
+      "Walk Through Windows" = "Ctrl+Tab";
+    };
   };
 
 }
