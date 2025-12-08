@@ -95,8 +95,10 @@ in
 
   programs.git = {
     enable = true;
-    userName = "anhnt";
-    userEmail = "tuananh131001@gmail.com";
+    settings = {
+      userName = "anhnt";
+      userEmail = "tuananh131001@gmail.com";
+    };
   };
 
   xresources.extraConfig = builtins.readFile ./Xresources;

@@ -76,6 +76,7 @@
   # Virtualization settings
   virtualisation.docker.enable = true;
 
+  # Vietnamese babie
   i18n.inputMethod = {
     type = "fcitx5";
     enable = true;
@@ -92,27 +93,34 @@
     config.common.default = "*";
   };
 
-  services.xserver =  lib.mkIf (config.specialisation != {}) {
-    enable = true;
-    xkb.layout = "us";
-    xkb.model = "apple";
-    xkb.variant = "basic"; # Fix dead key on Keychon K8 Max
+  # If you want to use multiple desktop
+  # services.xserver =  lib.mkIf (config.specialisation != {}) {
+  #   enable = true;
+  #   xkb.layout = "us";
+  #   xkb.model = "apple";
+  #   xkb.variant = "basic"; # Fix dead key on Keychon K8 Max
+  #
+  #   displayManager = {
+  #     lightdm.enable = true;
+  #     defaultSession = "none+i3";
+  #
+  #     # AARCH64: For now, on Apple Silicon, we must manually set the
+  #     # display resolution. This is a known issue with VMware Fusion.
+  #     sessionCommands = ''
+  #       ${pkgs.xorg.xset}/bin/xset r rate 500 20
+  #     '';
+  #   };
+  #
+  #   windowManager = {
+  #     i3.enable = true;
+  #   };
+  # };
 
-    displayManager = {
-      lightdm.enable = true;
-      defaultSession = "none+i3";
-
-      # AARCH64: For now, on Apple Silicon, we must manually set the
-      # display resolution. This is a known issue with VMware Fusion.
-      sessionCommands = ''
-        ${pkgs.xorg.xset}/bin/xset r rate 500 20
-      '';
-    };
-
-    windowManager = {
-      i3.enable = true;
-    };
-  };
+  # Plasma 6 By Default
+  services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
