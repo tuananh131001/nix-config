@@ -69,9 +69,11 @@ in
     pkgs.remnote
     pkgs.bitwarden-desktop
     pkgs.legcord
+    pkgs.vicinae
   ]
   ++ lib.optionals (currentSystemName == "pc-intel") [
     pkgs.discord-ptb
+    pkgs.vesktop
     pkgs.alsa-utils
     pkgs.ethtool
   ];
