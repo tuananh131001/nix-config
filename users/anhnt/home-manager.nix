@@ -70,6 +70,7 @@ in
     pkgs.bitwarden-desktop
     pkgs.legcord
     pkgs.vicinae
+    (pkgs.callPackage ./ww-run-raise.nix { })
   ]
   ++ lib.optionals (currentSystemName == "pc-intel") [
     pkgs.discord-ptb
@@ -119,7 +120,35 @@ in
   programs.plasma = {
     enable = true;
     shortcuts.kwin = {
-      "Walk Through Windows" = "Ctrl+Tab";
+      "Walk Through Windows" = "Meta+Tab";
+      "Edit.Copy" = "Meta+C";
+      "Edit.Paste" = "Meta+V";
+    };
+    configFile = {
+      kdeglobals = {
+        Shortcuts = {
+          Copy = "Meta+C";
+          Cut = "Meta+X";
+          Find = "Meta+F";
+          Paste = "Meta+V";
+          Redo = "Meta+Shift+Z";
+          SelectAll = "Meta+A";
+          Undo = "Meta+Z";
+        };
+      };
+    };
+
+    hotkeys.commands = {
+      "browser" = {
+        name = "Focus Firefox";
+        key = "Alt+1";
+        command = "ww -f firefox -c firefox";
+      };
+      "ghostty" = {
+        name = "Focus Ghostty";
+        key = "Alt+2";
+        command = "ww -f com.mitchellh.ghostty -c ghostty";
+      };
     };
   };
 
