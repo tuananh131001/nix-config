@@ -13,6 +13,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/cf5c2948-7895-4da0-96c6-4da93995370b";
@@ -27,7 +28,6 @@
   fileSystems."/run/media/anhnt/WD4T-PHER01" = 
   {
       device = "/dev/disk/by-uuid/42C8424BC8423D83";
-      fsType = "ntfs";
     };
 
   swapDevices =

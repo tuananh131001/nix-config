@@ -23,11 +23,28 @@ in
     # or inputs.zen-browser.homeModules.twilight-official
   ];
   xdg.enable = true;
-  
   xdg.configFile = {
     "i3/config".text = builtins.readFile ./i3;
     "rofi/config.rasi".text = builtins.readFile ./rofi;
+    "keyd/app.conf".text = builtins.readFile ./keyd_app;
   };
+
+  # Keyd app
+  systemd.user.services.keyd-application-mapper = {
+      Unit = {
+          Description = "keyd application mapper";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
+      };
+      Install = {
+          WantedBy = [ "graphical-session.target" ];
+      };
+      Service = {
+          Type = "simple";
+          ExecStart = "${pkgs.keyd}/bin/keyd-application-mapper";
+      };
+  };
+
 
   programs.fish = {
     enable = true;
@@ -69,7 +86,6 @@ in
     pkgs.remnote
     pkgs.bitwarden-desktop
     pkgs.legcord
-    pkgs.vicinae
     (pkgs.callPackage ./ww-run-raise.nix { })
   ]
   ++ lib.optionals (currentSystemName == "pc-intel") [
@@ -78,6 +94,9 @@ in
     pkgs.alsa-utils
     pkgs.ethtool
   ];
+  programs.vicinae = {
+    enable = true;
+  };
   services.gnome-keyring = {
     enable = true;
     components = [ "secrets" ];
@@ -120,33 +139,31 @@ in
   programs.plasma = {
     enable = true;
     shortcuts.kwin = {
-      "Walk Through Windows" = "Meta+Tab";
-      "Edit.Copy" = "Meta+C";
-      "Edit.Paste" = "Meta+V";
+      "Walk Through Windows" = "Ctrl+Tab"; 
     };
-    configFile = {
-      kdeglobals = {
-        Shortcuts = {
-          Copy = "Meta+C";
-          Cut = "Meta+X";
-          Find = "Meta+F";
-          Paste = "Meta+V";
-          Redo = "Meta+Shift+Z";
-          SelectAll = "Meta+A";
-          Undo = "Meta+Z";
-        };
-      };
-    };
+    # configFile = {
+    #   kdeglobals = {
+    #     Shortcuts = {
+    #       Copy = "Meta+C";
+    #       Cut = "Meta+X";
+    #       Find = "Meta+F";
+    #       Paste = "Meta+V";
+    #       Redo = "Meta+Shift+Z";
+    #       SelectAll = "Meta+A";
+    #       Undo = "Meta+Z";
+    #     };
+    #   };
+    # };
 
     hotkeys.commands = {
       "browser" = {
         name = "Focus Firefox";
-        key = "Alt+1";
+        key = "Meta+1"; # Command + 1
         command = "ww -f firefox -c firefox";
       };
       "ghostty" = {
         name = "Focus Ghostty";
-        key = "Alt+2";
+        key = "Meta+2"; # Command + 2
         command = "ww -f com.mitchellh.ghostty -c ghostty";
       };
     };

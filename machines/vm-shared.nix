@@ -45,6 +45,7 @@
       killall
       xclip
       kdePackages.dolphin
+      keyd
 
       # For hypervisors that support auto-resizing, this script forces it.
       # I've noticed not everyone listens to the udev events so this is a hack.
@@ -64,7 +65,7 @@
     ];
 
   services.keyd = {
-    enable = false;
+    enable = true;
     keyboards = {
       # The name is just the name of the configuration file, it does not really matter
       default = {
@@ -72,6 +73,9 @@
       };
     };
   };
+  systemd.services.keyd.serviceConfig.CapabilityBoundingSet = [
+      "CAP_SETGID"                                               
+  ];
 
   # Virtualization settings
   virtualisation.docker.enable = true;

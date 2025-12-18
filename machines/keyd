@@ -1,32 +1,34 @@
-# Source: https://www.reddit.com/r/AsahiLinux/comments/1fj9xvt/my_maclike_keybindings_config_keyd/
-# NOTE: to use this, rename this file to default.conf and put it in /etc/keyd/
-
-# Mac-Like Configuration Example
-#
-# Uses the "Meta" key (sometimes called Windows/Super key) to the left of the spacebar as the "Cmd" key. On a mac this is the 'command' key.
-
 [ids]
 *
 
 [main]
-# Map Alt to Control for common shortcuts
-leftmeta = layer(mac)
+# Cmd keys trigger the cmd layer
+leftmeta = layer(cmd)
+rightmeta = layer(cmd)
 
-[mac:C]
-# Common editing shortcuts
-# mac + key = C-c
-c = C-shift-c  # Copy
+# Caps Lock acts as Cmd
+capslock = leftmeta
 
-v = C-shift-v  # Paste
-x = C-x  # Cut
-a = C-a  # Select all
-z = C-z  # Undo
-y = C-y  # Redo (or C-S-z depending on app)
-f = C-f  # Find
-s = C-s  # Save
-n = C-n  # New
-o = C-o  # Open
-w = C-w  # Close tab/window
-t = C-t  # New tab
-q = C-q  # Quit
-p = C-p  # Print
+[cmd:C]
+# Essential shortcuts
+a = C-a          # Select all
+c = C-c          # Copy
+v = C-v          # Paste
+x = C-x          # Cut
+z = C-z          # Undo
+s = C-s          # Save
+f = C-f          # Find
+w = C-w          # Close tab
+t = C-t          # New tab
+q = C-q          # Quit
+
+# Text navigation
+left = C-a       # Beginning of line
+right = C-e      # End of line
+
+[cmd]
+# Text navigation and selection (Mac-like)
+left = home
+right = end
+shift+left = S-home
+shift+right = S-end
