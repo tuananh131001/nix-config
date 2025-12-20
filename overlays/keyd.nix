@@ -6,7 +6,8 @@ let
     owner = "rvaiya";
     repo = "keyd";
     rev = "v${version}";
-    hash = "sha256-l7yjGpicX1ly4UwF7gcOTaaHPRnxVUMwZkH70NDLL5M=";
+    hash = "sha256-l7yjGpicX1ly4UwF7gcOTaaHPRnxVUMwZkH70NDLL5M="; # 2.6.0
+    # hash = "sha256-pylfQjTnXiSzKPRJh9Jli1hhin/MIGIkZxLKxqlReVo="; # 2.5.0
   };
 
   pypkgs = prev.python3.pkgs;
@@ -43,10 +44,6 @@ in {
 
       substituteInPlace keyd.service.in \
         --replace-fail @PREFIX@ $out
-
-      # Make sched_setscheduler failure non-fatal (needed for VMs)
-      substituteInPlace src/daemon.c \
-        --replace-fail 'die("sched_setscheduler' 'perror("sched_setscheduler'
     '';
 
     installFlags = [ "DESTDIR=${placeholder "out"}" ];
