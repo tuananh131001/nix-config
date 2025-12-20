@@ -29,22 +29,6 @@ in
     "keyd/app.conf".text = builtins.readFile ./keyd_app;
   };
 
-  # Keyd app
-  systemd.user.services.keyd-application-mapper = {
-      Unit = {
-          Description = "keyd application mapper";
-          PartOf = [ "graphical-session.target" ];
-          After = [ "graphical-session.target" ];
-      };
-      Install = {
-          WantedBy = [ "default.target" ];
-      };
-      Service = {
-          Type = "simple";
-          ExecStart = "${pkgs.keyd}/bin/keyd-application-mapper -d";
-          Restart = "always";
-      };
-  };
 
 
   programs.fish = {
@@ -167,6 +151,24 @@ in
         command = "ww -f com.mitchellh.ghostty -c ghostty";
       };
     };
+  };
+
+  # Keyd app
+  systemd.user.services.keyd-application-mapper = {
+      Unit = {
+          Description = "keyd application mapper";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
+      };
+      Install = {
+          WantedBy = [ "graphical-session.target" ];
+      };
+      Service = {
+          Type = "simple";
+          ExecStart = "${pkgs.keyd}/bin/keyd-application-mapper";
+          Restart = "on-failure";
+          RestartSec = 3;
+      };
   };
 
 }
