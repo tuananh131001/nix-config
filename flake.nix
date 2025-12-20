@@ -26,6 +26,7 @@
       # Overlays is the list of overlays we want to apply from flake inputs.
       overlays = [
         inputs.zig.overlays.default
+        (import ./overlays/keyd.nix)
       ];
 
       mkSystem = import ./lib/mksystem.nix {
