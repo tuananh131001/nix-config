@@ -42,6 +42,7 @@ in
       Service = {
           Type = "simple";
           ExecStart = "${pkgs.keyd}/bin/keyd-application-mapper -d";
+          Restart = "always";
       };
   };
 
@@ -138,7 +139,7 @@ in
   programs.plasma = {
     enable = true;
     shortcuts.kwin = {
-      "Walk Through Windows" = "Meta+Tab"; 
+      "Walk Through Windows" = "Ctrl+Tab"; 
     };
     # configFile = {
     #   kdeglobals = {

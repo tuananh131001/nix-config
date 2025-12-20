@@ -20,9 +20,13 @@ let
     postPatch = ''
       substituteInPlace scripts/keyd-application-mapper \
         --replace-fail /bin/sh ${prev.runtimeShell}
+
+      # Fix Python 3.12+ SyntaxWarning: invalid escape sequence '\W'
+      substituteInPlace scripts/keyd-application-mapper \
+        --replace-fail "re.sub('[\W_]+'" "re.sub(r'[\W_]+'"
     '';
 
-    propagatedBuildInputs = with pypkgs; [ xlib ];
+    propagatedBuildInputs = with pypkgs; [ xlib dbus-python pygobject3 ];
 
     dontBuild = true;
 

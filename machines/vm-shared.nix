@@ -12,6 +12,7 @@
 {
   # Be careful updating this.
   boot.kernelPackages = pkgs.linuxPackages_6_17;
+  users.groups.keyd = {};
 
   imports = [
     # Include the results of the hardware scan.
@@ -80,6 +81,9 @@
       };
     };
   };
+  systemd.services.keyd.serviceConfig.CapabilityBoundingSet = [
+  "CAP_SETGID"                                               
+];
 
   # Virtualization settings
   virtualisation.docker.enable = true;
