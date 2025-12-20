@@ -34,6 +34,12 @@
   ];
 
   programs.tmux.enable = true; # home-manager created ~/.config/tmux which causes my chezmoi config broken
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox;
+    nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];
+  };
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -46,6 +52,7 @@
       xclip
       kdePackages.dolphin
       keyd
+      firefoxpwa
 
       # For hypervisors that support auto-resizing, this script forces it.
       # I've noticed not everyone listens to the udev events so this is a hack.

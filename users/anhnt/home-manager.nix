@@ -37,11 +37,11 @@ in
           After = [ "graphical-session.target" ];
       };
       Install = {
-          WantedBy = [ "graphical-session.target" ];
+          WantedBy = [ "default.target" ];
       };
       Service = {
           Type = "simple";
-          ExecStart = "${pkgs.keyd}/bin/keyd-application-mapper";
+          ExecStart = "${pkgs.keyd}/bin/keyd-application-mapper -d";
       };
   };
 
@@ -63,7 +63,6 @@ in
     pkgs.gnumake
     pkgs.mise
     pkgs.chezmoi
-    pkgs.firefox
     pkgs.brave
     pkgs.zlib
     pkgs.claude-code
