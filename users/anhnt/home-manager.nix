@@ -139,7 +139,7 @@ in
   programs.plasma = {
     enable = true;
     shortcuts.kwin = {
-      "Walk Through Windows" = "Ctrl+Tab"; 
+      "Walk Through Windows" = "Meta+Tab"; 
     };
     # configFile = {
     #   kdeglobals = {
