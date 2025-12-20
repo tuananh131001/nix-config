@@ -2,15 +2,12 @@
 *
 
 [main]
-# Cmd keys trigger the cmd layer
 leftmeta = layer(cmd)
 rightmeta = layer(cmd)
 
-# Caps Lock acts as Cmd
 capslock = leftmeta
 
 [cmd:C]
-# Essential shortcuts
 a = C-a          # Select all
 c = C-c          # Copy
 v = C-v          # Paste
@@ -22,12 +19,10 @@ w = C-w          # Close tab
 t = C-t          # New tab
 q = C-q          # Quit
 
-# Text navigation
 left = C-a       # Beginning of line
 right = C-e      # End of line
 
 [cmd]
-# Text navigation and selection (Mac-like)
 left = home
 right = end
 shift+left = S-home
