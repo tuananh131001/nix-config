@@ -158,12 +158,12 @@ in
     hotkeys.commands = {
       "browser" = {
         name = "Focus Firefox";
-        key = "Meta+1"; # Command + 1
+        key = "Alt+1"; # Command + 1
         command = "ww -f firefox -c firefox";
       };
       "ghostty" = {
         name = "Focus Ghostty";
-        key = "Meta+2"; # Command + 2
+        key = "Alt+2"; # Command + 2
         command = "ww -f com.mitchellh.ghostty -c ghostty";
       };
     };
