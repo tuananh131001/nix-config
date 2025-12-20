@@ -1,13 +1,13 @@
 final: prev:
 let
-  version = "2.6.0";
+  version = "2.5.0";
 
   src = prev.fetchFromGitHub {
     owner = "rvaiya";
     repo = "keyd";
     rev = "v${version}";
-    hash = "sha256-l7yjGpicX1ly4UwF7gcOTaaHPRnxVUMwZkH70NDLL5M="; # 2.6.0
-    # hash = "sha256-pylfQjTnXiSzKPRJh9Jli1hhin/MIGIkZxLKxqlReVo="; # 2.5.0
+    # hash = "sha256-l7yjGpicX1ly4UwF7gcOTaaHPRnxVUMwZkH70NDLL5M="; # 2.6.0
+    hash = "sha256-pylfQjTnXiSzKPRJh9Jli1hhin/MIGIkZxLKxqlReVo="; # 2.5.0
   };
 
   pypkgs = prev.python3.pkgs;
