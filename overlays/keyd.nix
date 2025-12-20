@@ -43,6 +43,10 @@ in {
 
       substituteInPlace keyd.service.in \
         --replace-fail @PREFIX@ $out
+
+      # Make sched_setscheduler failure non-fatal (needed for VMs)
+      substituteInPlace src/daemon.c \
+        --replace-fail 'die("sched_setscheduler' 'perror("sched_setscheduler'
     '';
 
     installFlags = [ "DESTDIR=${placeholder "out"}" ];
