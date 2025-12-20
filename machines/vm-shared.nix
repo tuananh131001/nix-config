@@ -73,9 +73,6 @@
       };
     };
   };
-  systemd.services.keyd.serviceConfig.CapabilityBoundingSet = [
-      "CAP_SETGID"                                               
-  ];
 
   # Virtualization settings
   virtualisation.docker.enable = true;
