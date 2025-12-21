@@ -140,10 +140,15 @@ in
     # };
 
     hotkeys.commands = {
+      # "browser" = {
+      #   name = "Focus Firefox";
+      #   key = "Alt+1"; # Command + 1
+      #   command = "ww -f firefox -c firefox";
+      # };
       "browser" = {
-        name = "Focus Firefox";
+        name = "Focus Zen Browser";
         key = "Alt+1"; # Command + 1
-        command = "ww -f firefox -c firefox";
+        command = "ww -f zen-beta -c zen";
       };
       "ghostty" = {
         name = "Focus Ghostty";
