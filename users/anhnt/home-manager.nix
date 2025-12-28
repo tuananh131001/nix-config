@@ -70,6 +70,7 @@ in
     pkgs.remnote
     pkgs.bitwarden-desktop
     pkgs.legcord
+    pkgs.obsidian
     (pkgs.callPackage ./ww-run-raise.nix { })
   ]
   ++ lib.optionals (currentSystemName == "pc-intel") [
