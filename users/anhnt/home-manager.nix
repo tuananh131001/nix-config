@@ -13,6 +13,10 @@
 }:
 let
   isLinux = pkgs.stdenv.isLinux;
+  unstable = import inputs.nixpkgs-unstable {
+    system = pkgs.system;
+    config.allowUnfree = true;
+  };
 in
 {
   home.stateVersion = "25.11";
@@ -50,7 +54,7 @@ in
     pkgs.chezmoi
     pkgs.brave
     pkgs.zlib
-    pkgs.claude-code
+    unstable.claude-code
     pkgs.libsecret
     pkgs.gcr
     pkgs.rofi
