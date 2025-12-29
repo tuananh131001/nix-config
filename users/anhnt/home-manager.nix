@@ -54,6 +54,7 @@ in
     pkgs.libsecret
     pkgs.gcr
     pkgs.rofi
+    pkgs.albert
     pkgs.geist-font
 
     # dev
@@ -79,9 +80,9 @@ in
     pkgs.alsa-utils
     pkgs.ethtool
   ];
-  programs.vicinae = {
-    enable = true;
-  };
+  # programs.vicinae = {
+  #   enable = true;
+  # };
   services.gnome-keyring = {
     enable = true;
     components = [ "secrets" ];
