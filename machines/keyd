@@ -27,3 +27,6 @@ left = home
 right = end
 shift+left = S-home
 shift+right = S-end
+
+[control+cmd]
+space = M-C-space

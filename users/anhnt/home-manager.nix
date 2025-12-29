@@ -56,6 +56,7 @@ in
     pkgs.rofi
     pkgs.albert
     pkgs.geist-font
+    pkgs.emote
 
     # dev
     pkgs.devenv
@@ -156,6 +157,11 @@ in
         name = "Focus Ghostty";
         key = "Alt+2"; # Command + 2
         command = "ww -f com.mitchellh.ghostty -c ghostty";
+      };
+      "emote" = {
+        name = "Emoji Picker";
+        key = "Meta+Ctrl+Space";
+        command = "emote";
       };
     };
   };
