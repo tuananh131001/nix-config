@@ -29,8 +29,8 @@ in
   xdg.enable = true;
   xdg.configFile = {
     "i3/config".text = builtins.readFile ./i3;
-    "rofi/config.rasi".text = builtins.readFile ./rofi;
     "keyd/app.conf".text = builtins.readFile ./keyd_app;
+    "fcitx5/config".text = builtins.readFile ./fcitx5;
   };
 
 
@@ -57,8 +57,6 @@ in
     unstable.claude-code
     pkgs.libsecret
     pkgs.gcr
-    pkgs.rofi
-    pkgs.albert
     pkgs.geist-font
     pkgs.emote
 
@@ -95,6 +93,19 @@ in
 
   programs.starship = {
     enable = true;
+  };
+
+  programs.rofi = {
+    enable = true;
+    font = "Geist 12";
+    extraConfig = {
+      dpi = 220;
+      show-icons = true;
+      icon-theme = "Papirus";
+      display-drun = "Apps";
+      display-run = "Run";
+      display-window = "Windows";
+    };
   };
   programs.zen-browser.enable = true;
 
@@ -166,6 +177,11 @@ in
         name = "Emoji Picker";
         key = "Meta+Ctrl+Space";
         command = "emote";
+      };
+      "rofi" = {
+        name = "Application Launcher";
+        key = "Ctrl+Space";
+        command = "rofi -show drun";
       };
     };
   };
