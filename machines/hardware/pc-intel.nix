@@ -25,10 +25,11 @@
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
-  fileSystems."/run/media/anhnt/WD4T-PHER01" = 
-  {
-      device = "/dev/disk/by-uuid/42C8424BC8423D83";
-    };
+  fileSystems."/run/media/anhnt/WD4T-PHER01" = {
+    device = "/dev/disk/by-uuid/42C8424BC8423D83";
+    fsType = "ntfs-3g";
+    options = [ "noatime" "big_writes" "nofail" ];
+  };
 
   swapDevices =
     [ { device = "/dev/disk/by-uuid/143f422b-1484-4137-bdde-f2518ce48687"; }

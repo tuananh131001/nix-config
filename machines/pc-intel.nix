@@ -83,4 +83,11 @@
     enable = true;
     openDefaultPorts = true; # Open ports in the firewall for Syncthing
   };
+
+  # HDD power management - spin down external WD 4TB after 30 minutes idle
+  # -B 127: APM level (less aggressive power saving)
+  # -S 241: Spindown timeout (241 = 30 minutes)
+  services.udev.extraRules = ''
+    ACTION=="add", KERNEL=="sd[a-z]", ENV{ID_FS_UUID}=="42C8424BC8423D83", RUN+="${pkgs.hdparm}/bin/hdparm -B 127 -S 241 $env{DEVNAME}"
+  '';
 }
