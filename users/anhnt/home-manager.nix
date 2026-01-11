@@ -37,6 +37,9 @@ in
 
   programs.fish = {
     enable = true;
+    shellAliases = {
+      claude = "claude-bun";
+    };
   };
   home.packages = [
     pkgs.wget
