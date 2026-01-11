@@ -72,5 +72,5 @@ sudo nix flake update
 
 ### Update Claude Code Only
 ```bash
-nix flake lock --update-input nixpkgs-claude
+nix flake lock --update-input claude-code
 ```

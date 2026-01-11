@@ -17,10 +17,6 @@ let
     system = pkgs.system;
     config.allowUnfree = true;
   };
-  claude-pkgs = import inputs.nixpkgs-claude {
-    system = pkgs.system;
-    config.allowUnfree = true;
-  };
 in
 {
   home.stateVersion = "25.11";
@@ -58,7 +54,7 @@ in
     pkgs.chezmoi
     pkgs.brave
     pkgs.zlib
-    claude-pkgs.claude-code
+    inputs.claude-code.packages.${pkgs.system}.claude-code-bun
     pkgs.libsecret
     pkgs.gcr
     pkgs.geist-font
