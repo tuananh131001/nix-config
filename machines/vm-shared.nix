@@ -98,10 +98,13 @@
     ];
   };
 
-  # I3
+  # Desktop portals (GTK for i3, KDE for Plasma)
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.kdePackages.xdg-desktop-portal-kde
+    ];
     config.common.default = "*";
   };
 

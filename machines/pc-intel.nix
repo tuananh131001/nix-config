@@ -84,6 +84,25 @@
     openDefaultPorts = true; # Open ports in the firewall for Syncthing
   };
 
+  # FTP server for faster FolderSync transfers
+  services.vsftpd = {
+    enable = true;
+    localUsers = true;
+    writeEnable = true;
+    localRoot = "/run/media/anhnt/WD4T-PHER01";
+    extraConfig = ''
+      pasv_enable=YES
+      pasv_min_port=51000
+      pasv_max_port=51999
+    '';
+  };
+
+  # Open FTP ports (merges with existing firewall in vm-shared.nix)
+  networking.firewall.allowedTCPPorts = [ 21 ];
+  networking.firewall.allowedTCPPortRanges = [
+    { from = 51000; to = 51999; }  # Passive FTP data ports
+  ];
+
   # HDD power management - spin down external WD 4TB after 30 minutes idle
   # -B 127: APM level (less aggressive power saving)
   # -S 241: Spindown timeout (241 = 30 minutes)

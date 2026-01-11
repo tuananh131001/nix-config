@@ -20,3 +20,6 @@ Use 'fcitx5-configtool' for config vietnamese typing system
 # Nix Flake Update / Update packages
 sudo nix flake update
 
+# Update Claude Code Only
+nix flake lock --update-input nixpkgs-claude
+
