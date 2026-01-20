@@ -22,7 +22,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 7;
+  boot.loader.systemd-boot.configurationLimit = 5;
 
   networking.hostName = "nixos-anhnt"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.

@@ -30,6 +30,11 @@
     fsType = "ntfs-3g";
     options = [ "noatime" "big_writes" "nofail" ];
   };
+    fileSystems."/data" = {
+      device = "/dev/disk/by-uuid/138f80de-64d2-40ee-a843-cf9cf470457c";
+      fsType = "ext4";
+      options = [ "noatime" ];
+    };
 
   swapDevices =
     [ { device = "/dev/disk/by-uuid/143f422b-1484-4137-bdde-f2518ce48687"; }
