@@ -177,6 +177,52 @@
         "type": "github"
       }
     },
+    "parsec-gaming": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "parsecDeb": "parsecDeb",
+        "parsecMeta": "parsecMeta"
+      },
+      "locked": {
+        "lastModified": 1765065769,
+        "narHash": "sha256-IqoIeDsL+jnI57J8R+Pywu9p9Y7dfTbFPB9/dI9j7g4=",
+        "owner": "DarthPJB",
+        "repo": "parsec-gaming-nix",
+        "rev": "7a0c03161c696cf101e4fd970b8acb1c99e6f639",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DarthPJB",
+        "repo": "parsec-gaming-nix",
+        "type": "github"
+      }
+    },
+    "parsecDeb": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-+sNEGgb2wARM8JDf3Gdzk+N/IFNERlEQJFROGQGP8XE=",
+        "type": "file",
+        "url": "https://builds.parsecgaming.com/package/parsec-linux.deb"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://builds.parsecgaming.com/package/parsec-linux.deb"
+      }
+    },
+    "parsecMeta": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-w4RUg+A+BfYsu2gIpSvYFdPXTGd0lWEp44X4/6jYHQE=",
+        "type": "file",
+        "url": "https://builds.parsecgaming.com/channel/release/appdata/linux/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://builds.parsecgaming.com/channel/release/appdata/linux/latest"
+      }
+    },
     "plasma-manager": {
       "inputs": {
         "home-manager": [
@@ -206,6 +252,7 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "parsec-gaming": "parsec-gaming",
         "plasma-manager": "plasma-manager",
         "zen-browser": "zen-browser",
         "zig": "zig"

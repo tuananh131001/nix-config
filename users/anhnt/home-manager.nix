@@ -85,6 +85,7 @@ in
     pkgs.vesktop
     pkgs.alsa-utils
     pkgs.ethtool
+    inputs.parsec-gaming.packages.x86_64-linux.parsecgaming
   ];
   # programs.vicinae = {
   #   enable = true;
@@ -98,18 +99,6 @@ in
     enable = true;
   };
 
-  programs.rofi = {
-    enable = true;
-    font = "Geist 12";
-    extraConfig = {
-      dpi = 220;
-      show-icons = true;
-      icon-theme = "Papirus";
-      display-drun = "Apps";
-      display-run = "Run";
-      display-window = "Windows";
-    };
-  };
   programs.zen-browser.enable = true;
 
   programs.zoxide = {
@@ -180,11 +169,6 @@ in
         name = "Emoji Picker";
         key = "Meta+Ctrl+Space";
         command = "emote";
-      };
-      "rofi" = {
-        name = "Application Launcher";
-        key = "Ctrl+Space";
-        command = "rofi -show drun";
       };
     };
   };

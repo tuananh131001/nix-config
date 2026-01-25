@@ -139,6 +139,23 @@
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  # Auto-login for headless/remote access (Sunshine needs a graphical session)
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "anhnt";
+  };
+
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true; 
+    package = pkgs.sunshine.override {
+      cudaSupport = true;
+      cudaPackages = pkgs.cudaPackages; # <-- I needed this bit
+    };
+  };
+
   # SSH for LAN access
   services.openssh = {
     enable = true;
