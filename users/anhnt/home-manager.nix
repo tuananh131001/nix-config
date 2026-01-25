@@ -13,10 +13,10 @@
 }:
 let
   isLinux = pkgs.stdenv.isLinux;
-  unstable = import inputs.nixpkgs-unstable {
-    system = pkgs.system;
-    config.allowUnfree = true;
-  };
+  # unstable = import inputs.nixpkgs-unstable {
+  #   system = pkgs.system;
+  #   config.allowUnfree = true;
+  # };
 in
 {
   home.stateVersion = "25.11";
@@ -85,7 +85,6 @@ in
     pkgs.vesktop
     pkgs.alsa-utils
     pkgs.ethtool
-    inputs.parsec-gaming.packages.x86_64-linux.parsecgaming
   ];
   # programs.vicinae = {
   #   enable = true;
