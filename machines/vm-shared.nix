@@ -36,6 +36,12 @@
   nix.settings.substituters = [ "https://claude-code.cachix.org" ];
   nix.settings.trusted-public-keys = [ "claude-code.cachix.org-1:YeXf2aNu7UTX8Vwrze0za1WEDS+4DuI2kVeWEE4fsRk=" ];
 
+  # Enable nix-ld for running dynamically linked binaries (uvx, chroma-mcp, etc.)
+  programs.nix-ld.enable = true;
+
+  programs.adb.enable = true;
+  nixpkgs.config.android_sdk.accept_license = true;
+
   programs.tmux.enable = true; # home-manager created ~/.config/tmux which causes my chezmoi config broken
   programs.firefox = {
     enable = true;

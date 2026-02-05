@@ -35,9 +35,6 @@ in
 
   programs.fish = {
     enable = true;
-    shellAliases = {
-      claude = "claude-bun";
-    };
   };
   home.packages = [
     pkgs.wget
@@ -55,7 +52,8 @@ in
     pkgs.chezmoi
     pkgs.brave
     pkgs.zlib
-    inputs.claude-code.packages.${pkgs.system}.claude-code-bun
+    inputs.claude-code.packages.${pkgs.system}.claude-code
+    inputs.zccinfo.packages.${pkgs.system}.default
     pkgs.libsecret
     pkgs.gcr
     pkgs.geist-font
@@ -67,6 +65,7 @@ in
 
     # Language
     pkgs.nodejs
+    pkgs.bun
     pkgs.python3
     pkgs.zig
     pkgs.ruby
@@ -79,6 +78,7 @@ in
     (pkgs.callPackage ./ww-run-raise.nix { })
   ]
   ++ lib.optionals (currentSystemName == "pc-intel") [
+    pkgs.android-studio
     pkgs.discord-ptb
     pkgs.vesktop
     pkgs.alsa-utils
