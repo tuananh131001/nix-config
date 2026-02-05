@@ -33,8 +33,6 @@ in
     "fcitx5/config".text = builtins.readFile ./fcitx5;
   };
 
-
-
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -187,6 +185,27 @@ in
           ExecStart = "${pkgs.keyd}/bin/keyd-application-mapper";
           Restart = "on-failure";
           RestartSec = 3;
+      };
+  };
+
+  # Fix Plasma taskbar icons after rebuild/GC
+  # Converts absolute /nix/store paths to applications: protocol
+  systemd.user.services.fix-plasma-taskbar-icons = {
+      Unit = {
+          Description = "Fix KDE Plasma task manager icons";
+          After = [ "graphical-session.target" ];
+      };
+      Install = {
+          WantedBy = [ "graphical-session.target" ];
+      };
+      Service = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.writeShellScript "fix-plasma-icons" ''
+            CONFIG="$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"
+            if [ -f "$CONFIG" ]; then
+              ${pkgs.gnused}/bin/sed -i '/^launchers=/s|file:///[^,]*/\([^,/]*\)|applications:\1|g' "$CONFIG"
+            fi
+          ''}";
       };
   };
 
