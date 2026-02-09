@@ -26,6 +26,10 @@ in
     # or inputs.zen-browser.homeModules.twilight
     # or inputs.zen-browser.homeModules.twilight-official
   ];
+  # LD_LIBRARY_PATH moved to environment.sessionVariables in vm-shared.nix (system-level)
+  home.sessionVariables = {
+  };
+
   xdg.enable = true;
   xdg.configFile = {
     "i3/config".text = builtins.readFile ./i3;
@@ -35,6 +39,9 @@ in
 
   programs.fish = {
     enable = true;
+    shellAliases = {
+      claude-danger = "claude --dangerously-skip-permissions";
+    };
   };
   home.packages = [
     pkgs.wget
