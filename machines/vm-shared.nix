@@ -144,11 +144,24 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
+  services.displayManager.defaultSession = "plasmax11";
 
   # Auto-login for headless/remote access (Sunshine needs a graphical session)
   services.displayManager.autoLogin = {
     enable = true;
     user = "anhnt";
+  };
+
+  users.users.sunshine = {
+    isSystemUser = true;
+    extraGroups = [ "video" "nvidia" ];
+  };
+  users.users.sunshine.group = "sunshine";
+  users.groups.sunshine = {};
+
+  systemd.services.sunshine = {
+    enable = true;
+    serviceConfig.Environment = "LD_LIBRARY_PATH=${config.boot.kernelPackages.nvidiaPackages.beta.out}/lib:${config.boot.kernelPackages.nvidiaPackages.beta.out}/lib64";
   };
 
   services.sunshine = {

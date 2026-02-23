@@ -35,6 +35,8 @@ in
     "i3/config".text = builtins.readFile ./i3;
     "keyd/app.conf".text = builtins.readFile ./keyd_app;
     "fcitx5/config".text = builtins.readFile ./fcitx5;
+    "autostart/eye-rest-reminder.desktop".source =
+      "${inputs.eye-rest-reminder.packages.${pkgs.system}.default}/etc/xdg/autostart/eye-rest-reminder.desktop";
   };
 
   programs.fish = {
@@ -61,6 +63,7 @@ in
     pkgs.zlib
     inputs.claude-code.packages.${pkgs.system}.claude-code
     inputs.zccinfo.packages.${pkgs.system}.default
+    inputs.eye-rest-reminder.packages.${pkgs.system}.default
     pkgs.libsecret
     pkgs.gcr
     pkgs.geist-font

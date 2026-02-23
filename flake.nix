@@ -9,6 +9,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     zig.url = "github:mitchellh/zig-overlay";
     zccinfo.url = "github:tuananh131001/zccinfo";
+    eye-rest-reminder.url = "path:/home/anhnt/Documents/Projects/nix-eye-rest-reminder";
+    eye-rest-reminder.inputs.nixpkgs.follows = "nixpkgs";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager = {
